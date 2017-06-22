@@ -1,0 +1,38 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2015
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Yugami - VST", "Yugami_VST.vcxproj", "{C78D41D0-570C-91B4-CE23-22749493E4F4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D3BCC0ED-1F53-8433-8958-B651AAD2308C} = {D3BCC0ED-1F53-8433-8958-B651AAD2308C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Yugami - VST3", "Yugami_VST3.vcxproj", "{1A9FBC78-0E73-251C-9965-482DA431B56E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D3BCC0ED-1F53-8433-8958-B651AAD2308C} = {D3BCC0ED-1F53-8433-8958-B651AAD2308C}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Yugami - Shared Code", "Yugami_SharedCode.vcxproj", "{D3BCC0ED-1F53-8433-8958-B651AAD2308C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C78D41D0-570C-91B4-CE23-22749493E4F4}.Debug|x64.Build.0 = Debug|x64
+		{C78D41D0-570C-91B4-CE23-22749493E4F4}.Debug|x64.ActiveCfg = Debug|x64
+		{C78D41D0-570C-91B4-CE23-22749493E4F4}.Release|x64.Build.0 = Release|x64
+		{C78D41D0-570C-91B4-CE23-22749493E4F4}.Release|x64.ActiveCfg = Release|x64
+		{1A9FBC78-0E73-251C-9965-482DA431B56E}.Debug|x64.Build.0 = Debug|x64
+		{1A9FBC78-0E73-251C-9965-482DA431B56E}.Debug|x64.ActiveCfg = Debug|x64
+		{1A9FBC78-0E73-251C-9965-482DA431B56E}.Release|x64.Build.0 = Release|x64
+		{1A9FBC78-0E73-251C-9965-482DA431B56E}.Release|x64.ActiveCfg = Release|x64
+		{D3BCC0ED-1F53-8433-8958-B651AAD2308C}.Debug|x64.Build.0 = Debug|x64
+		{D3BCC0ED-1F53-8433-8958-B651AAD2308C}.Debug|x64.ActiveCfg = Debug|x64
+		{D3BCC0ED-1F53-8433-8958-B651AAD2308C}.Release|x64.Build.0 = Release|x64
+		{D3BCC0ED-1F53-8433-8958-B651AAD2308C}.Release|x64.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
