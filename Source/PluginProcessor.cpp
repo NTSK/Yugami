@@ -141,7 +141,17 @@ void YugamiAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
     {
         float* channelData = buffer.getWritePointer (channel);
 
-        // ..do something to the data...
+        for (long buffNum = 0; buffNum<buffer.getNumSamples(); buffNum++)
+        {
+            float threshold = 0.7f;
+            if (channelData[buffNum] >= threshold) {
+                channelData[buffNum] = threshold;
+            }
+            else if (channelData[buffNum] <= threshold)
+            {
+                channelData[buffNum] = -threshold;
+            }
+        }
     }
 }
 
