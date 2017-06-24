@@ -179,7 +179,44 @@ void YugamiAudioProcessor::setStateInformation (const void* data, int sizeInByte
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
 }
+//==============================================================================
+int YugamiAudioProcessor::getNumParameters() { return totalNumParam; }
 
+float YugamiAudioProcessor::getParameter(int index){
+    if (index >= 0 && index < totalNumParam)
+        return UserParams[index];
+    else return 0;
+}
+
+void YugamiAudioProcessor::setParameter(int index, float value)
+{
+    switch (index) {
+        case MasterByPass:
+            UserParams[MasterByPass] = value;
+            break;
+        case Gain:
+            UserParams[Gain] = value;
+            break;
+        case Threshold:
+            UserParams[Threshold] = value;
+            break;
+        case Volume:
+            UserParams[Volume] = value;
+            break;
+        default: return;
+    }
+}
+
+const String YugamiAudioProcessor::getParameterName(int index)
+{
+    switch (index) {
+        case MasterByPass: return "Master Bypass";
+        case Gain: return "Gain";
+        case Threshold: return "Threshold";
+        case Volume: return "Volume";
+        default: return String::empty;
+    }
+}
 //==============================================================================
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
