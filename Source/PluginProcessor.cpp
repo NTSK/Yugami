@@ -218,6 +218,16 @@ const String YugamiAudioProcessor::getParameterName(int index)
     }
 }
 //==============================================================================
+const String YugamiAudioProcessor::getParameterText(int index){
+    switch (index) {
+        case MasterByPass: return UserParams[MasterByPass] == 1.0f ? "BYPASS" : "EFFECT";
+        case Gain: return String(Decibels::gainToDecibels(pow(UserParams[Gain], 2) * 2.0f), 1) + "db";
+        case Threshold: return String(Decibels::gainToDecibels(pow(UserParams[Threshold], 2)), 1) + "db";
+        case Volume: return String(Decibels::gainToDecibels(pow(UserParams[Volume], 2) * 2.0f), 1) + "db";
+        default:return String::empty;
+    }
+}
+//==============================================================================
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
