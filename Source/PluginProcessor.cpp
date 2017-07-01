@@ -188,8 +188,25 @@ void YugamiAudioProcessor::getStateInformation (MemoryBlock& destData)
 
 void YugamiAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
+    XmlElement* pRoot = getXmlFromBinary(data, sizeInBytes);
+    if (pRoot != NULL) {
+        forEachXmlChildElement((*pRoot), pChild) {
+            if (pChild->hasTagName("Bypass")) {
+                String text = pChild->getAllSubText();
+                setParameter(MasterByPass, text.getFloatValue());
+            } else if (pChild->hasTagName("Gain")) {
+                String text = pChild->getAllSubText();
+                setParameter(Gain, text.getFloatValue());
+            } else if (pChild->hasTagName("Threshold")) {
+                String text = pChild->getAllSubText();
+                setParameter(Threshold, text.getFloatValue());
+            } else if (pChild->hasTagName("Volume")) {
+                String text = pChild->getAllSubText();
+                setParameter(Volume, text.getFloatValue());
+            }
+        }
+        delete pRoot;
+    }
 }
 //==============================================================================
 int YugamiAudioProcessor::getNumParameters() { return totalNumParam; }
