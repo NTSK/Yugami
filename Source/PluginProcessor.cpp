@@ -29,6 +29,10 @@ YugamiAudioProcessor::YugamiAudioProcessor()
 
 YugamiAudioProcessor::~YugamiAudioProcessor()
 {
+    UserParams[MasterByPass] = 0.0f;
+    UserParams[Gain] = 0.7f;
+    UserParams[Threshold] = 1.0f;
+    UserParams[Volume] = 0.7f;
 }
 
 //==============================================================================
@@ -126,17 +130,15 @@ void YugamiAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
     const int totalNumInputChannels  = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();
 
-    // In case we have more outputs than inputs, this code clears any output
-    // channels that didn't contain input data, (because these aren't
-    // guaranteed to be empty - they may contain garbage).
-    // This is here to avoid people getting screaming feedback
-    // when they first compile a plugin, but obviously you don't need to keep
-    // this code if your algorithm always overwrites all the output channels.
     for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
+    if (UserParams[MasterByPass] == 1.0f) {
+        return;
+    }
+    
+    buffer.applyGain(pow(UserParams[Gain], 2)* 2.0f);
+    float threshold = pow(UserParams[Threshold], 2);
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         float* channelData = buffer.getWritePointer (channel);
@@ -153,6 +155,7 @@ void YugamiAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
             }
         }
     }
+    buffer.applyGain(pow(UserParams[Volume], 2) * 2.0f);
 }
 
 //==============================================================================
