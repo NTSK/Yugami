@@ -172,9 +172,18 @@ AudioProcessorEditor* YugamiAudioProcessor::createEditor()
 //==============================================================================
 void YugamiAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
+    XmlElement root("Root");
+    XmlElement *el;
+    el = root.createNewChildElement("Bypass");
+    el->addTextElement(String(UserParams[MasterByPass]));
+    el = root.createNewChildElement("Gain");
+    el->addTextElement(String(UserParams[Gain]));
+    el = root.createNewChildElement("Threshold");
+    el->addTextElement(String(UserParams[Threshold]));
+    el = root.createNewChildElement("Volume");
+    el->addTextElement(String(UserParams[Volume]));
+    copyXmlToBinary(root, destData);
+    
 }
 
 void YugamiAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
