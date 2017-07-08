@@ -78,15 +78,20 @@ YugamiAudioProcessorEditor::~YugamiAudioProcessorEditor()
 void YugamiAudioProcessorEditor::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (ResizableWindow::backgroundColourId));
+    g.fillAll (Colours::lightgrey);
 
-    g.setColour (Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), Justification::centred, 1);
+    //g.setColour (Colours::white);
+    //g.setFont (15.0f);
+    //g.drawFittedText ("Hello World!", getLocalBounds(), Justification::centred, 1);
 }
 
 void YugamiAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    Gain.setBounds(40, 30, 60, 150);
+    Threshold.setBounds(140, 30, 120, 150);
+    Volume.setBounds(300, 300, 60, 150);
+    GainLabel.setBounds(40, 1900, 60, 30);
+    ThresholdLabel.setBounds(140, 190, 120, 30);
+    VolumeLabel.setBounds(300, 190, 60, 30);
+    Bypass.setBounds(getWidth()*0.2f, getHeight() - 60, getWidth()*0.6f, 30);
 }
