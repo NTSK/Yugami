@@ -17,7 +17,9 @@
 //==============================================================================
 /**
 */
-class YugamiAudioProcessorEditor  : public AudioProcessorEditor
+class YugamiAudioProcessorEditor  : public AudioProcessorEditor,
+                                    private Slider::Listener,
+                                    private Button::Listener
 {
 public:
     YugamiAudioProcessorEditor (YugamiAudioProcessor&);
@@ -28,6 +30,8 @@ public:
     void resized() override;
 
 private:
+    void sliderValueChanged(Slider *changeSlider) override;
+    void buttonClicked(Button* clickedButton) override;
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     YugamiAudioProcessor& processor;

@@ -68,6 +68,10 @@ YugamiAudioProcessorEditor::YugamiAudioProcessorEditor (YugamiAudioProcessor& p)
     addAndMakeVisible(&VolumeLabel);
     addAndMakeVisible(&Bypass);
     
+    Gain.addListener(this);
+    Threshold.addListener(this);
+    Volume.addListener(this);
+    Bypass.addListener(this);
 }
 
 YugamiAudioProcessorEditor::~YugamiAudioProcessorEditor()
