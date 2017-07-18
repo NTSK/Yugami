@@ -224,6 +224,13 @@ void YugamiAudioProcessorEditor::sliderValueChanged (Slider *changedSlider)
         VolumeLabel.setText("VolumeLabel¥n" + processor.getParameterText(YugamiAudioProcessor::Volume), dontSendNotification);
     }
 }
+
+void YugamiAudioProcessorEditor::buttonClicked(Button *clickedButton)
+{
+    if (clickedButton == &Bypass) {
+        processor.setParameterNotifyingHost(YugamiAudioProcessor::MasterByPass, Bypass.getToggleState());
+    }
+}
 //==============================================================================
 int YugamiAudioProcessor::getNumParameters() { return totalNumParam; }
 
