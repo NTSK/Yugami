@@ -208,6 +208,22 @@ void YugamiAudioProcessor::setStateInformation (const void* data, int sizeInByte
         delete pRoot;
     }
 }
+
+void YugamiAudioProcessorEditor::sliderValueChanged (Slider *changedSlider)
+{
+    if (changedSlider == &Gain) {
+        processor.setParameterNotifyingHost(YugamiAudioProcessor::Gain, Gain.getValue());
+        GainLabel.setText("Gain¥n" + processor.getParameterText(YugamiAudioProcessor::Gain), dontSendNotification);
+    }
+    else if (changedSlider == &Threshold) {
+        processor.setParameterNotifyingHost(YugamiAudioProcessor::Threshold, Threshold.getValue());
+        ThresholdLabel.setText("ThresholdLabel¥n" + processor.getParameterText(YugamiAudioProcessor::Threshold), dontSendNotification);
+    }
+    else if (changedSlider == &Volume) {
+        processor.setParameterNotifyingHost(YugamiAudioProcessor::Volume, Volume.getValue());
+        VolumeLabel.setText("VolumeLabel¥n" + processor.getParameterText(YugamiAudioProcessor::Volume), dontSendNotification);
+    }
+}
 //==============================================================================
 int YugamiAudioProcessor::getNumParameters() { return totalNumParam; }
 
